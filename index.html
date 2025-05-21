@@ -658,13 +658,14 @@
       }
 
       // Function to generate star rating HTML
-      function getStarRatingHtml(rating) {
-          let starsHtml = '';
-          for (let i = 0; i < 5; i++) {
-              starsHtml += `<span class="${i < rating ? 'checked' : ''}">&#9733;</span>`;
-          }
-          return `<div class="star-rating">${starsHtml}</div>`;
-      }
+function getStarRatingHtml(rating) {
+    let starsHtml = '';
+    for (let i = 0; i < 5; i++) {
+        // Ensure the 'star' class is always present, plus 'checked' if applicable
+        starsHtml += `<span class="star ${i < rating ? 'checked' : ''}">&#9733;</span>`;
+    }
+    return `<div class="star-rating">${starsHtml}</div>`;
+}
 
       // Function to load and display initial testimonials
       async function loadTestimonials() {
