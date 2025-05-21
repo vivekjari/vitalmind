@@ -8,19 +8,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; transition: transform 0.3s ease, filter 0.3s ease; }
-    .bubble-container { position: relative; width: 100%; height: 100%; }
-    .bubble { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); width: 70px; height: 70px; transform: translate(-50%, -50%); }
+    .bubble-container {
+      position: relative;
+      width: 90%; /* Adjusted width for more compact mobile layout */
+      padding-top: 50%; /* Maintain aspect ratio (1:1 for a square container) */
+      overflow: hidden;
+      max-width: 500px; /* Increased max-width for tablets/larger phones */
+      min-width: 280px; /* Prevent container from becoming too small */
+      margin: 0 auto; /* Center the container */
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      /* Using vw for dynamic sizing relative to viewport width, scales automatically */
+      width: 15vw; /* Further reduced for smaller bubbles on mobile */
+      height: 15vw; /* Further reduced for smaller bubbles on mobile */
+      transform: translate(-50%, -50%); /* Keeps bubble centered on its x,y point */
+      min-width: 40px; /* Minimum size for bubbles on very small screens */
+      min-height: 40px; /* Minimum size for bubbles on very small screens */
+      max-width: 70px; /* Ensure bubbles don't get excessively large on very wide screens */
+      max-height: 70px; /* Ensure bubbles don't get excessively large on very wide screens */
+    }
     .bubble img { width: 100%; height: 100%; object-fit: cover; }
-    .company-logo { width: 80px; height: auto; margin-right: 10px; } /* Adjusted for smaller screens */
+    .company-logo { width: 80px; height: auto; margin-right: 10px; }
     .company-info { display: flex; flex-direction: column; justify-content: center; }
-    .company-name { font-size: 1.5rem; font-weight: 700; color: #1e293b; } /* Adjusted for smaller screens */
-    .company-byline { font-size: 0.8rem; color: #4b5563; margin-top: 0.2rem; } /* Adjusted for smaller screens */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px; } /* Adjusted minmax for mobile */
+    .company-name { font-size: 1.5rem; font-weight: 700; color: #1e293b; }
+    .company-byline { font-size: 0.8rem; color: #4b5563; margin-top: 0.2rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px; }
     .service-card { padding: 25px; border: 1px solid #e5e7eb; border-radius: 0.5rem; transition: shadow-md 0.15s ease-in-out; background-color: white; }
     .service-card:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
     .service-icon { font-size: 2rem; color: #3b82f6; margin-bottom: 10px; }
-    .service-title { font-weight: bold; margin-bottom: 10px; font-size: 1.15rem; color: #1e293b; } /* Adjusted for smaller screens */
-    .service-description { font-size: 0.85rem; color: #4b5563; line-height: 1.6; } /* Adjusted for smaller screens */
+    .service-title { font-weight: bold; margin-bottom: 10px; font-size: 1.15rem; color: #1e293b; }
+    .service-description { font-size: 0.85rem; color: #4b5563; line-height: 1.6; }
     h1, h2, h3, h4 { font-weight: 600; }
     a { color: #3b82f6; }
     a:hover { color: #2563eb; }
@@ -45,8 +66,8 @@
       z-index: 50;
       background: white;
       border-radius: 1rem;
-      padding: 1.5rem; /* Adjusted padding for mobile */
-      width: 95%; /* Increased width for mobile */
+      padding: 1.5rem;
+      width: 95%;
       max-width: 500px;
       max-height: 90vh;
       overflow-y: auto;
@@ -104,6 +125,49 @@
         border-radius: 9999px;
         transition: width 0.5s ease-in-out;
     }
+
+    /* Adjusted bubble positions for better mobile alignment using percentages of the container's width/height */
+    /* Increased top values slightly to move rows down, increased left values to prevent edge cutoff */
+    .bubble-container .bubble:nth-child(1) { left: 12%; top: 15%; } /* Top row */
+    .bubble-container .bubble:nth-child(2) { left: 38%; top: 15%; }
+    .bubble-container .bubble:nth-child(3) { left: 62%; top: 15%; }
+    .bubble-container .bubble:nth-child(4) { left: 88%; top: 15%; }
+
+    .bubble-container .bubble:nth-child(5) { left: 12%; top: 45%; } /* Middle row */
+    .bubble-container .bubble:nth-child(6) { left: 38%; top: 45%; }
+    .bubble-container .bubble:nth-child(7) { left: 62%; top: 45%; }
+    .bubble-container .bubble:nth-child(8) { left: 88%; top: 45%; }
+
+    .bubble-container .bubble:nth-child(9) { left: 12%; top: 75%; } /* Bottom row */
+    .bubble-container .bubble:nth-child(10) { left: 38%; top: 75%; }
+    .bubble-container .bubble:nth-child(11) { left: 62%; top: 75%; }
+    .bubble-container .bubble:nth-child(12) { left: 88%; top: 75%; }
+
+    /* Media queries for larger screens to adjust bubble size and positions */
+    @media (min-width: 768px) {
+        .bubble-container {
+            width: 384px; /* Tailwind's w-96 */
+            height: 384px; /* Tailwind's h-96 */
+            padding-top: 0; /* Remove padding-top when fixed height is used */
+        }
+        .bubble {
+            width: 70px; /* Revert to fixed size for larger screens */
+            height: 70px; /* Revert to fixed size for larger screens */
+        }
+        /* Adjusted for even horizontal distribution on larger screens */
+        .bubble-container .bubble:nth-child(1) { left: 12.5%; top: 20%; }
+        .bubble-container .bubble:nth-child(2) { left: 37.5%; top: 20%; }
+        .bubble-container .bubble:nth-child(3) { left: 62.5%; top: 20%; }
+        .bubble-container .bubble:nth-child(4) { left: 87.5%; top: 20%; } /* Adjusted from 91.66% to prevent cutoff */
+        .bubble-container .bubble:nth-child(5) { left: 12.5%; top: 50%; }
+        .bubble-container .bubble:nth-child(6) { left: 37.5%; top: 50%; }
+        .bubble-container .bubble:nth-child(7) { left: 62.5%; top: 50%; }
+        .bubble-container .bubble:nth-child(8) { left: 87.5%; top: 50%; } /* Adjusted */
+        .bubble-container .bubble:nth-child(9) { left: 12.5%; top: 80%; }
+        .bubble-container .bubble:nth-child(10) { left: 37.5%; top: 80%; }
+        .bubble-container .bubble:nth-child(11) { left: 62.5%; top: 80%; }
+        .bubble-container .bubble:nth-child(12) { left: 87.5%; top: 80%; } /* Adjusted */
+    }
   </style>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -154,24 +218,25 @@
   </nav>
 
   <div id="main-content" class="transition-all duration-300">
-    <section class="pt-10 pb-10 md:pt-20 md:pb-20 bg-gradient-to-r from-blue-50 to-white" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-10">
-        <div class="md:w-1/2 flex justify-center items-center sm:hidden"> <div class="relative w-72 h-72 md:w-96 md:h-96 bubble-container" id="bubbleContainer">
-            <div class="bubble" style="left: 16.66%; top: 20%;"> <img src="assets/bubble1.jpg" alt="Top Left 1"> </div>
-            <div class="bubble" style="left: 41.66%; top: 20%;"> <img src="assets/bubble2.jpg" alt="Top Middle 1"> </div>
-            <div class="bubble" style="left: 66.66%; top: 20%;"> <img src="assets/bubble3.jpg" alt="Top Middle 2"> </div>
-            <div class="bubble" style="left: 91.66%; top: 20%;"> <img src="assets/bubble10.jpg" alt="Top Right"> </div>
-            <div class="bubble" style="left: 16.66%; top: 50%;"> <img src="assets/bubble4.jpg" alt="Middle Left 1"> </div>
-            <div class="bubble" style="left: 41.66%; top: 50%;"> <img src="assets/bubble5.jpg" alt="Middle Middle 1"> </div>
-            <div class="bubble" style="left: 66.66%; top: 50%;"> <img src="assets/bubble6.jpg" alt="Middle Middle 2"> </div>
-            <div class="bubble" style="left: 91.66%; top: 50%;"> <img src="assets/bubble11.jpg" alt="Middle Right"> </div>
-            <div class="bubble" style="left: 16.66%; top: 80%;"> <img src="assets/bubble7.jpg" alt="Bottom Left 1"> </div>
-            <div class="bubble" style="left: 41.66%; top: 80%;"> <img src="assets/bubble8.jpg" alt="Bottom Middle 1"> </div>
-            <div class="bubble" style="left: 66.66%; top: 80%;"> <img src="assets/bubble9.jpg" alt="Bottom Middle 2"> </div>
-            <div class="bubble" style="left: 91.66%; top: 80%;"> <img src="assets/bubble12.jpg" alt="Bottom Right"> </div>
+    <section class="pt-10 pb-10 md:pt-10 md:pb-10 bg-gradient-to-r from-blue-50 to-white" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-0">
+        <div class="w-full md:w-1/2 flex justify-center items-center order-first md:order-last">
+          <div class="relative w-full max-w-sm sm:max-w-md md:w-96 md:h-96 bubble-container" id="bubbleContainer">
+            <div class="bubble"> <img src="assets/bubble1.jpg" alt="Bubble 1"> </div>
+            <div class="bubble"> <img src="assets/bubble2.jpg" alt="Bubble 2"> </div>
+            <div class="bubble"> <img src="assets/bubble3.jpg" alt="Bubble 3"> </div>
+            <div class="bubble"> <img src="assets/bubble4.jpg" alt="Bubble 4"> </div>
+            <div class="bubble"> <img src="assets/bubble5.jpg" alt="Bubble 5"> </div>
+            <div class="bubble"> <img src="assets/bubble6.jpg" alt="Bubble 6"> </div>
+            <div class="bubble"> <img src="assets/bubble7.jpg" alt="Bubble 7"> </div>
+            <div class="bubble"> <img src="assets/bubble8.jpg" alt="Bubble 8"> </div>
+            <div class="bubble"> <img src="assets/bubble9.jpg" alt="Bubble 9"> </div>
+            <div class="bubble"> <img src="assets/bubble10.jpg" alt="Bubble 10"> </div>
+            <div class="bubble"> <img src="assets/bubble11.jpg" alt="Bubble 11"> </div>
+            <div class="bubble"> <img src="assets/bubble12.jpg" alt="Bubble 12"> </div>
           </div>
         </div>
-        <div class="md:w-1/2 text-center md:text-left">
+        <div class="md:w-1/2 md:text-left order-last md:order-first">
           <h1 class="text-3xl md:text-5xl font-bold mb-2">Data-Driven,</h1>
           <h2 class="text-3xl md:text-5xl font-bold text-blue-600 mb-6">Doctor-Approved</h2>
           <p class="text-base md:text-lg mb-8 text-gray-700">
@@ -185,7 +250,7 @@
     </section>
     <section id="services" class="py-10 md:py-16 bg-white" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-center md:text-left">Services</h2>
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-left md:text-left">Services</h2>
         <div class="services-grid sm:grid-cols-2 lg:grid-cols-3">
           <div class="service-card"><i class="fas fa-brain service-icon"></i><h3 class="service-title">AI-Powered Data Analysis Agents</h3><p class="service-description">Deploy intelligent AI agents to automate data exploration, identify key patterns, and generate initial insights, accelerating your analysis workflow.</p></div>
           <div class="service-card"><i class="fas fa-project-diagram service-icon"></i><h3 class="service-title">Data Modeling & Architecture Design</h3><p class="service-description">Develop robust and scalable data models and design efficient data architectures tailored to your specific analytical needs and industry best practices.</p></div>
@@ -289,9 +354,9 @@
     </section>
     <section id="about" class="py-10 md:py-12 bg-white" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-center md:text-left">About Me</h2>
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 text-left md:text-left">About Me</h2>
         <p class="text-base md:text-lg text-gray-700 mb-4 md:mb-8">I’m a data analyst who thrives on finding clarity in chaos—whether it’s a spreadsheet full of marketing metrics or clinical trial results. With a foundation in healthcare operations and hands-on experience in digital marketing analytics, I’ve developed a unique ability to connect data with decision-making—no matter the domain. From slashing manual reporting by 40% through automation to delivering campaign insights that sharpen ROI, I bring both domain expertise and analytical firepower to the table.</p>
-        <p class="text-base md:text-lg text-gray-700 mb-6">I specialize in data reporting, automation, and visualization—helping businesses unlock hidden trends, streamline workflows, and make smarter, faster decisions. Whether you're in healthcare, e-commerce, tech, or finance, I bring cross-domain expertise, a problem-solving mindset, and a deep understanding of business goals. I use the right tools for the job (always impact-first, not tool-first), and I’m here to turn your data into your competitive edge—whether you'rea startup decoding performance metrics oran established brand ready to scale smarter.</p>
+        <p class="text-base md:text-lg text-gray-700 mb-6">I specialize in data reporting, automation, and visualization—helping businesses unlock hidden trends, streamline workflows, and make smarter, faster decisions. Whether you're in healthcare, e-commerce, tech, or finance, I bring cross-domain expertise, a problem-solving mindset, and a deep understanding of business goals. I use the right tools for the job, and I’m here to turn your data into your competitive edge—whether you’re a startup decoding performance metrics or an established brand ready to scale smarter.</p>
       </div>
     </section>
     <section id="contact-section" class="py-10 md:py-12 bg-gray-100" data-aos="fade-up">
