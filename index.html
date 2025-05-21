@@ -108,9 +108,14 @@
         color: #4b5563;
     }
     .all-testimonials-grid .testimonial-card .star-rating {
-        color: gold;
+        /* Set the default color for stars within star-rating to lightgray */
+        color: lightgray;
         margin-bottom: 0.5rem;
         font-size: 1rem;
+    }
+    /* This rule will make the 'checked' stars within star-rating gold */
+    .all-testimonials-grid .testimonial-card .star-rating .checked {
+        color: gold;
     }
     .progress-bar-container {
         background-color: #e5e7eb;
