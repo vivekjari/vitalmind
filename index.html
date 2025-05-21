@@ -11,7 +11,7 @@
     .bubble-container {
       position: relative;
       width: 90%; /* Adjusted width for more compact mobile layout */
-      padding-top: 40%; /* Maintain aspect ratio (1:1 for a square container) */
+      padding-top: 70%; /* Maintain aspect ratio (1:1 for a square container) */
       overflow: hidden;
       max-width: 500px; /* Increased max-width for tablets/larger phones */
       min-width: 280px; /* Prevent container from becoming too small */
@@ -133,20 +133,20 @@
 
     /* Adjusted bubble positions for better mobile alignment using percentages of the container's width/height */
     /* Increased top values slightly to move rows down, increased left values to prevent edge cutoff */
-    .bubble-container .bubble:nth-child(1) { left: 12%; top: 15%; } /* Top row */
-    .bubble-container .bubble:nth-child(2) { left: 38%; top: 15%; }
-    .bubble-container .bubble:nth-child(3) { left: 62%; top: 15%; }
-    .bubble-container .bubble:nth-child(4) { left: 88%; top: 15%; }
+    .bubble-container .bubble:nth-child(1) { left: 12%; top: 10%; } /* Top row */
+    .bubble-container .bubble:nth-child(2) { left: 38%; top: 10%; }
+    .bubble-container .bubble:nth-child(3) { left: 62%; top: 10%; }
+    .bubble-container .bubble:nth-child(4) { left: 88%; top: 10%; }
 
-    .bubble-container .bubble:nth-child(5) { left: 12%; top: 45%; } /* Middle row */
-    .bubble-container .bubble:nth-child(6) { left: 38%; top: 45%; }
-    .bubble-container .bubble:nth-child(7) { left: 62%; top: 45%; }
-    .bubble-container .bubble:nth-child(8) { left: 88%; top: 45%; }
+    .bubble-container .bubble:nth-child(5) { left: 12%; top: 40%; } /* Middle row */
+    .bubble-container .bubble:nth-child(6) { left: 38%; top: 40%; }
+    .bubble-container .bubble:nth-child(7) { left: 62%; top: 40%; }
+    .bubble-container .bubble:nth-child(8) { left: 88%; top: 40%; }
 
-    .bubble-container .bubble:nth-child(9) { left: 12%; top: 75%; } /* Bottom row */
-    .bubble-container .bubble:nth-child(10) { left: 38%; top: 75%; }
-    .bubble-container .bubble:nth-child(11) { left: 62%; top: 75%; }
-    .bubble-container .bubble:nth-child(12) { left: 88%; top: 75%; }
+    .bubble-container .bubble:nth-child(9) { left: 12%; top: 70%; } /* Bottom row */
+    .bubble-container .bubble:nth-child(10) { left: 38%; top: 70%; }
+    .bubble-container .bubble:nth-child(11) { left: 62%; top: 70%; }
+    .bubble-container .bubble:nth-child(12) { left: 88%; top: 70%; }
 
     /* Media queries for larger screens to adjust bubble size and positions */
     @media (min-width: 768px) {
@@ -223,7 +223,7 @@
   </nav>
 
   <div id="main-content" class="transition-all duration-300">
-    <section class="pt-20 pb-10 md:pt-10 md:pb-10 bg-gradient-to-r from-blue-50 to-white" data-aos="fade-up">
+    <section class="pt-10 pb-20 md:pt-10 md:pb-10 bg-gradient-to-r from-blue-50 to-white" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-0">
     <div class="w-full md:w-1/2 flex justify-center items-center order-last md:order-last">
       <div class="relative w-full max-w-sm sm:max-w-md md:w-96 md:h-96 bubble-container" id="bubbleContainer">
